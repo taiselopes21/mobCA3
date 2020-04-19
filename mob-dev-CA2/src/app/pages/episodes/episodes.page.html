@@ -6,6 +6,7 @@
 <ion-content>
     <ion-list>
         <ion-item button detail lines="inset" *ngFor="let episode of eposides | async" (click)="openDetails(episode)">
-        {{ espisode.title }}
+        {{ episode.title }}
+        </ion-item>
     </ion-list>
 </ion-content>
