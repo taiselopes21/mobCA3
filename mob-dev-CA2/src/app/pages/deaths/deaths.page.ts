@@ -5,18 +5,18 @@ import { ApiService } from '../../services/api.service';
 
  
 @Component({
-  selector: 'app-deathcount',
-  templateUrl: './deathcount.page.html',
-  styleUrls: ['./deathcount.page.scss'],
+  selector: 'app-deaths',
+  templateUrl: './deaths.page.html',
+  styleUrls: ['./deaths.page.scss'],
 })
-export class DeathcountPage implements OnInit {
+export class DeathsPage implements OnInit {
  
-  deathcount: Observable<any>;
+  deaths: Observable<any>;
  
   constructor(private router: Router, private api: ApiService) { }
  
   ngOnInit() {
-    this.deathcount = this.api.getDeaths();
+    this.deaths = this.api.getDeaths();
   }
 }
 
