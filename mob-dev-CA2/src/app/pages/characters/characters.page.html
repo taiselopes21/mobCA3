@@ -6,7 +6,13 @@
 <ion-content>
     <ion-list>
         <ion-item button detail lines="inset" *ngFor="let character of characters | async" (click)="openDetails(character)">
-        {{ character.name }}
+        <ion-avatar slot="start">
+            <img [src]="character.img" *ngIf="character.img != 'N/A'">
+        </ion-avatar>
+           <ion-label text-wrap>
+					<h2> {{character.name}}</h2>
+					<h3>{{character.status}}</h3>
+			</ion-label>
         </ion-item>
     </ion-list>
 </ion-content>
