@@ -1,32 +1,38 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start" defaultHref="/tabs/(character: character)">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Character{{ char_id?.char_id }}</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="unfavouritecharacter()" *ngIf="isFavourite">
-        <ion-icon name="star" slot="icon-only" color="secondary"></ion-icon>
-      </ion-button>
-      <ion-button (click)="favouritecharacter()" *ngIf="!isFavourite">
-        <ion-icon name="star-outline" slot="icon-only" color="secondary"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start" defaulthref="/tabs/episodes">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Character Details</ion-title>
+	</ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <ion-card *ngIf="character" class="movie-card">
-    <ion-card-header>Char_id {{ char_id.name }}: {{ char_id.char_id }}</ion-card-header>
-    <ion-card-content>
-      {{ episode.season }}
-    </ion-card-content>
-    <ion-item class="movie-info" lines="none">
-      <ion-icon name="episode" slot="start"></ion-icon>
-      Director: {{ episode.season}}
-    </ion-item>
-    <ion-item class="movie-info" lines="none">
-      <ion-icon name="calendar" slot="start"></ion-icon>
-      Release Date: {{ episode.air_date }}
-    </ion-item>
-  </ion-card>
+
+	<ion-card *ngIf="character">
+		<ion-card-content>
+			{{ character.name }}
+		</ion-card-content>
+		<ion-card *ngIf="character" class="movie-card">
+			<ion-card-header color="warning">Character {{ character.character }}: {{ character.title }}
+			</ion-card-header>
+			<ion-card-content>
+				{{ character.birthday }}
+			</ion-card-content>
+            <p align="center"><img [src]="character.img" width="180" height="180" class="info-img"></p>
+			
+            <ion-item class="movie-info" lines="none">
+				<ion-icon name="calendar" slot="start"></ion-icon>
+				Actor: {{ character.name }}
+			</ion-item>
+			<ion-item class="movie-info" lines="none">
+				<ion-icon name="people-outline" slot="start"></ion-icon>
+				Nickname: {{ character.nickname }}
+			</ion-item>
+			<ion-item class="movie-info" lines="none">
+				<ion-icon name="document" slot="start"></ion-icon>
+				Category: {{ character.category}}
+			</ion-item>
+
+		</ion-card>
+	</ion-card>
 </ion-content>
