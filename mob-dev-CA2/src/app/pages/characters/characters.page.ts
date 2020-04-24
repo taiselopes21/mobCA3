@@ -23,7 +23,8 @@ export class CharactersPage implements OnInit {
   }
  
   openDetails(character) {
-    let characterId = character.character_id;
-    this.router.navigateByUrl(`/tabs/characters/${characterId}`);
+    let characterId = character.char_id;
+    this.router.navigateByUrl(`/tabs/characters/${character.char_Id}`);
+    console.log('my dataCharacterDetails: ', character);
   }
 }
