@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../services/api.service';
+import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
     selector: 'app-episode-details',
@@ -14,7 +15,7 @@ export class EpisodeDetailsPage implements OnInit {
     episodeId = null;
     icon:any = false;
     constructor(private activatedRoute: ActivatedRoute,
-        private api: ApiService) { }
+        private api: ApiService, private favourites: FavouritesService) { }
 
     ngOnInit(){
 
@@ -30,11 +31,11 @@ export class EpisodeDetailsPage implements OnInit {
     }
 
     likeCheck(){
-          this.icon = this.api.episodeLike(this.episodeId);
+          this.icon = this.favourites.episodeLike(this.episodeId);
       }
     
       like(episode_id){
-        this.icon = this.api.addEpisodeLike(episode_id);
+        this.icon = this.favourites.addEpisodeLike(episode_id);
         // this.get_like();
       }
 }
