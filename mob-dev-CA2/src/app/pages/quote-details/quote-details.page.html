@@ -9,9 +9,25 @@
 <ion-content padding>
 	<ion-card *ngIf="quote">
 		<ion-card-content>
-			<p>Author: {{ quote.author }}</p>
-			<p>Series: {{ quote.series }}</p>
-			<p>Quote: {{ quote.quote }}</p>
+			<ion-card-content class="quoteTitle">
+				{{ quote.author }}
+
+			</ion-card-content>
+			<ion-item>
+				<ion-icon name="person-circle-outline" slot="start"></ion-icon>
+				Author: {{ quote.author }}
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="videocam-outline" slot="start"></ion-icon>
+				Series: {{ quote.series }}
+			</ion-item>
+
+			<ion-item>
+				<ion-icon name="chatbubble-ellipses-outline" slot="start"></ion-icon>
+				Quote: {{ quote.quote }}
+			</ion-item>
+
 		</ion-card-content>
 	</ion-card>
 </ion-content>

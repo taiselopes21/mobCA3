@@ -8,6 +8,7 @@ export class FavouritesService {
   constructor() { }
   characters_array = [];
     episodes_array = [];characterLike(char_id) {
+        
         let added = false;
         let flag = false;
         for (let item of this.characters_array) {
