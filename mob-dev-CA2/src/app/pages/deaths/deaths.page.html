@@ -5,11 +5,14 @@
 </ion-header>
  
 <ion-content>
-
+  <ion-searchbar name="search" [(ngModel)]="search"  cancelButtonText="Cancel"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let death of deaths | async">
+    <div *ngFor="let death of deaths | async">
+      <ion-item *ngIf="filter(death)">
       <p>{{ death.death }}</p>
     </ion-item>
+    </div>
+    
   </ion-list> 
 
 
