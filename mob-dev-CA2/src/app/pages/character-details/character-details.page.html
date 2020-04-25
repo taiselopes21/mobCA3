@@ -6,33 +6,27 @@
 		<ion-title>Character Details</ion-title>
 	</ion-toolbar>
 </ion-header>
+
 <ion-content padding>
 
 	<ion-card *ngIf="character">
 		<ion-card-content>
-			{{ character.name }}
-		</ion-card-content>
-		<ion-card *ngIf="character" class="movie-card">
-			<ion-card-header color="warning">Character {{ character.character }}: {{ character.title }}
-			</ion-card-header>
-			<ion-card-content>
-				{{ character.birthday }}
-			</ion-card-content>
-            <p align="center"><img [src]="character.img" width="180" height="180" class="info-img"></p>
+			<ion-icon *ngIf="icon" (click)="like(character.char_id)" class="heartIcon"  name="heart"></ion-icon>
+			<ion-icon *ngIf="!icon" (click)="like(character.char_id)" class="heartIcon"  name="heart-outline"></ion-icon>
 			
-            <ion-item class="movie-info" lines="none">
-				<ion-icon name="calendar" slot="start"></ion-icon>
-				Actor: {{ character.name }}
-			</ion-item>
-			<ion-item class="movie-info" lines="none">
-				<ion-icon name="people-outline" slot="start"></ion-icon>
-				Nickname: {{ character.nickname }}
-			</ion-item>
-			<ion-item class="movie-info" lines="none">
-				<ion-icon name="document" slot="start"></ion-icon>
-				Category: {{ character.category}}
-			</ion-item>
-
-		</ion-card>
+				<img src="{{character.img}}">
+			  
+			<p>Name: {{ character.name }}</p>
+			<p>Nick Name: {{ character.nickname }}</p>
+			<p>Birthday: {{ character.birthday }}</p>
+			<p>Portrayed: {{ character.portrayed }}</p>
+			<p>Categotry: {{ character.category }}</p>
+			<p>Status: {{ character.status }}</p>
+			<h3>Occupation:</h3>
+			<p *ngFor="let x of character.occupation"></p>
+			<h3>Appearance:</h3>
+			<p *ngFor="let x of character.appearance"></p>
+		</ion-card-content>
 	</ion-card>
+
 </ion-content>
