@@ -9,14 +9,38 @@
 <ion-content padding>
 
 	<ion-card *ngIf="episode">
+
 		<ion-card-content>
-			<ion-icon *ngIf="icon" (click)="like(episode.episode_id)" class="heartIcon"  name="heart"></ion-icon>
-			<ion-icon *ngIf="!icon" (click)="like(episode.episode_id)" class="heartIcon"  name="heart-outline"></ion-icon>
-			<p>Title: {{ episode.title }}</p>
-			<p>Season: {{ episode.season }}</p>
-			<p>Date: {{ episode.air_date }}</p>
-			<h3>Characters:</h3>
-			<p *ngFor="let x of episode.characters"></p>
+			<ion-card-content class="episodeTitle">
+				{{ episode.title }}
+
+				<ion-icon *ngIf="icon" (click)="like(episode.episode_id)" class="heartIcon" name="heart"></ion-icon>
+				<ion-icon *ngIf="!icon" (click)="like(episode.episode_id)" class="heartIcon" name="heart-outline"></ion-icon>
+			
+            </ion-card-content>
+
+            <ion-item>
+				<ion-icon name="film-outline"  slot="start"></ion-icon>
+				Title: {{ episode.title }}
+            </ion-item>
+
+            <ion-item>
+				<ion-icon name="videocam-outline" slot="start"></ion-icon>
+				Season: {{ episode.season }}
+            </ion-item>
+
+            <ion-item>
+				<ion-icon name="calendar-outline"  slot="start"></ion-icon>
+				Date: {{ episode.air_date }}
+            </ion-item>
+
+            <ion-item>
+				<ion-icon name="people-circle-outline" slot="start"></ion-icon>
+				Characters: {{ episode.characters }}
+            </ion-item>
+
+            
+
 		</ion-card-content>
 	</ion-card>
 
