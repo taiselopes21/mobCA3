@@ -10,23 +10,61 @@
 <ion-content padding>
 
 	<ion-card *ngIf="character">
+    
 		<ion-card-content>
-			<ion-icon *ngIf="icon" (click)="like(character.char_id)" class="heartIcon"  name="heart"></ion-icon>
+            <ion-card-content class="charTitle">
+			{{ character.name }}
+
+            <ion-icon *ngIf="icon" (click)="like(character.char_id)" class="heartIcon"  name="heart"></ion-icon>
 			<ion-icon *ngIf="!icon" (click)="like(character.char_id)" class="heartIcon"  name="heart-outline"></ion-icon>
-			
+
+		    </ion-card-content>
+        
 				<img src="{{character.img}}">
-			  
-			<p>Name: {{ character.name }}</p>
-			<p>Nick Name: {{ character.nickname }}</p>
-			<p>Birthday: {{ character.birthday }}</p>
-			<p>Portrayed: {{ character.portrayed }}</p>
-			<p>Categotry: {{ character.category }}</p>
-			<p>Status: {{ character.status }}</p>
-			<h3>Occupation:</h3>
-			<p *ngFor="let x of character.occupation"></p>
-			<h3>Appearance:</h3>
-			<p *ngFor="let x of character.appearance"></p>
+
+            
+			<ion-item>
+				<ion-icon name="person-circle-outline" slot="start"></ion-icon>
+				Name: {{ character.name }}
+            </ion-item>
+
+			<ion-item>
+				<ion-icon name="happy-outline" slot="start"></ion-icon>
+				Nick Name: {{ character.nickname }}
+			</ion-item>
+
+            <ion-item>
+				<ion-icon name="calendar-outline" slot="start"></ion-icon>
+				Birthday: {{ character.birthday }}
+			</ion-item>
+
+            <ion-item>
+				<ion-icon name="camera-outline" slot="start"></ion-icon>
+				Portrayed: {{ character.portrayed }}
+			</ion-item>
+
+            <ion-item>
+				<ion-icon name="videocam-outline" slot="start"></ion-icon>
+				Category: {{ character.category }}
+			</ion-item>
+
+            <ion-item>
+				<ion-icon name="alarm-outline" slot="start"></ion-icon>
+				Status: {{ character.status }}
+			</ion-item>
+
+            <ion-item>
+				<ion-icon name="briefcase-outline" slot="start"></ion-icon>
+				Occupation: {{ character.occupation }}
+			</ion-item>
+
+            <ion-item>
+				<ion-icon name="eye-outline" slot="start"></ion-icon>
+				Appearance: {{ character.appearance }}
+			</ion-item>
+
 		</ion-card-content>
 	</ion-card>
 
 </ion-content>
+
