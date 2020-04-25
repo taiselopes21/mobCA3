@@ -26,4 +26,6 @@ export class EpisodesPage implements OnInit {
         this.router.navigateByUrl(`/tabs/episodes/${episodeId}`);
         console.log('my dataEpisodeDetails: ', episodeId);
     }
+    loadData(event){        
+  }
 }
