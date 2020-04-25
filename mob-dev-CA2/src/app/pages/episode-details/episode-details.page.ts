@@ -12,11 +12,11 @@ export class EpisodeDetailsPage implements OnInit {
 
     episode: Observable<any>;
     episodeId = null;
-    icon: any = false;
+    icon:any = false;
     constructor(private activatedRoute: ActivatedRoute,
         private api: ApiService) { }
 
-    ngOnInit() {
+    ngOnInit(){
 
     }
     ionViewWillEnter() {
@@ -26,6 +26,15 @@ export class EpisodeDetailsPage implements OnInit {
             console.log(JSON.stringify(this.episodeId.id));
         });
 
-
+        this.likeCheck();
     }
+
+    likeCheck(){
+          this.icon = this.api.episodeLike(this.episodeId);
+      }
+    
+      like(episode_id){
+        this.icon = this.api.addEpisodeLike(episode_id);
+        // this.get_like();
+      }
 }

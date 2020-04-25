@@ -3,15 +3,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../services/api.service';
 @Component({
-  selector: 'app-character-details',
-  templateUrl: './character-details.page.html',
-  styleUrls: ['./character-details.page.scss'],
+    selector: 'app-character-details',
+    templateUrl: './character-details.page.html',
+    styleUrls: ['./character-details.page.scss'],
 })
 export class CharacterDetailsPage implements OnInit {
 
-  character: Observable<any>;
+    character: Observable<any>;
     characterId = null;
-    icon:any = false;
+    icon: any = false;
     constructor(private activatedRoute: ActivatedRoute,
         private api: ApiService) { }
 
@@ -22,11 +22,25 @@ export class CharacterDetailsPage implements OnInit {
             console.log(JSON.stringify(this.characterId));
             console.log(this.character);
         });
-      
-      }
 
-    //   ionViewWillEnter() {
-       
+    }
 
+    ionViewWillEnter() {
+
+
+        this.likeCheck();
+    }
+
+    likeCheck() {
+        this.icon = this.api.getCharacterLike(this.characterId);
+    }
+
+    like(character_id) {
+        this.icon = this.api.characterLike(character_id);
+        this.likeCheck();
+    }
 
 }
+
+
+
