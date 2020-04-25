@@ -7,5 +7,11 @@
 	</ion-toolbar>
 </ion-header>
 <ion-content padding>
-
+	<ion-card *ngIf="quote">
+		<ion-card-content>
+			<p>Author: {{ quote.author }}</p>
+			<p>Series: {{ quote.series }}</p>
+			<p>Quote: {{ quote.quote }}</p>
+		</ion-card-content>
+	</ion-card>
 </ion-content>
