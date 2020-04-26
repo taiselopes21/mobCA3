@@ -11,7 +11,16 @@
 		
 			<ion-card button detail lines="inset" *ngFor="let episode of episodes | async"
 				(click)="openDetails(episode)">
-				{{ episode.title }}
+                <ion-item>
+				<h2>{{ episode.title }}</h2>
+                </ion-item>
+                <ion-item>
+				<p>{{ episode.series}} - Season: {{ episode.season }}</p>
+
+                </ion-item>
+
+                
+                
 			</ion-card>
 		
         </ion-infinite-scroll-content>
