@@ -5,12 +5,12 @@
 </ion-header>
 <ion-content>
   <ion-searchbar name="search" [(ngModel)]="search"  cancelButtonText="Cancel"></ion-searchbar>
-    <ion-list>
-        <div *ngFor="let quote of quotes | async">
+    <ion-card>
+        <ion-card *ngFor="let quote of quotes | async">
           <ion-item *ngIf="filter(quote)" button detail lines="inset"  (click)="openDetails(quote)">
         {{ quote.quote }}
         </ion-item>
-        </div>
+        </ion-card>
         
-    </ion-list>
+    </ion-card>
 </ion-content>

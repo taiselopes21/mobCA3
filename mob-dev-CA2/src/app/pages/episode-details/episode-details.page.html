@@ -14,14 +14,9 @@
 			<ion-card-content class="episodeTitle">
 				{{ episode.title }}
 
-				<ion-buttons slot="end">
-					<ion-button (click)="unfavouriteEpisode()" *ngIf="isFavourite">
-						<ion-icon name="star" slot="icon-only"></ion-icon>
-					</ion-button>
-					<ion-button (click)="favouriteEpisode()" *ngIf="!isFavourite">
-						<ion-icon name="star-outline" slot="icon-only"></ion-icon>
-					</ion-button>
-				</ion-buttons>
+				<ion-icon (click)="unfavouriteEpisode()" *ngIf="isFavourite" class="heartIcon" name="heart"></ion-icon>
+				<ion-icon (click)="favouriteEpisode()" *ngIf="!isFavourite" class="heartIconOut" name="heart-outline">
+				</ion-icon>
 
 			</ion-card-content>
 

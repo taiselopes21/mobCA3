@@ -5,11 +5,15 @@
 </ion-header>
 <ion-content>
 	<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-		<ion-list>
-			<ion-item button detail lines="inset" *ngFor="let episode of episodes | async"
+    <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more episodes...">
+		
+			<ion-card button detail lines="inset" *ngFor="let episode of episodes | async"
 				(click)="openDetails(episode)">
 				{{ episode.title }}
-			</ion-item>
-		</ion-list>
+			</ion-card>
+		
+        </ion-infinite-scroll-content>
 	</ion-infinite-scroll>
 </ion-content>
