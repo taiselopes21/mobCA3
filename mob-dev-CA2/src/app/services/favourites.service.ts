@@ -1,122 +1,94 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
+
+const STORAGE_KEY = 'favouriteEpisodes';
+const STORAGE_KEY_CHAR = 'favouriteCharacters';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class FavouritesService {
 
-  constructor() { }
-  characters_array = [];
-    episodes_array = [];characterLike(char_id) {
+    constructor(private storage: Storage) { }
+
+    getAllFavouriteEpisodes() {
+        return this.storage.get(STORAGE_KEY);
         
-        let added = false;
-        let flag = false;
-        for (let item of this.characters_array) {
-          if (item.id == char_id) {
-            item.likes = !item.likes;
-            added = true;
-            console.log(this.characters_array);
-            if(item.likes){
-                flag = true;
-            }
-            else{
-                flag = false;
-            }
-            break;
-          }
-        }
-    
-        if (!added) {
-            let data = {
-                id: char_id,
-                likes: true
-            }
-          this.characters_array.push(data);
-          flag = true;
-        }
-        return flag;
     }
 
-      getCharacterLike(char_id){
-        let flag;
-        if(this.characters_array == []){
-            console.log('object');
-            flag = false;
-        }
-        else{
-            for (let item of this.characters_array) {
-                if (item.id == char_id) {
-                    if(item.likes){
-                        flag = true;
-                    }
-                    else{
-                        flag = false;
-                    }
-                    break;
-                }
-                else{
-                    console.log('else');
-                    flag = false;
-                }
-                }
-    }
-        
-       return flag;
+    isFavourite(episodeId) {
+        return this.getAllFavouriteEpisodes().then(result => {
+            return result && result.indexOf(episodeId) !== -1;
+        });
     }
 
-    episodeLike(id){
-        let flag;
-        if(this.episodes_array.length < 1){
-            console.log('object');
-            flag = false;
-        }
-        else{
-            for (let item of this.episodes_array) {
-                if (item.id == id) {
-                    if(item.likes){
-                        flag = true;
-                    }
-                    else{
-                        flag = false;
-                    }
-                    break;
-                }
-                else{
-                    console.log('else');
-                    flag = false;
-                }
-                }
-    }
-        
-       return flag;
+    favouriteEpisode(episodeId) {
+        return this.getAllFavouriteEpisodes().then(result => {
+            if (result) {
+                result.push(episodeId);
+                return this.storage.set(STORAGE_KEY, result);
+            } else {
+                return this.storage.set(STORAGE_KEY, [episodeId]);
+            }
+        });
     }
 
-    addEpisodeLike(id) {
-        let added = false;
-        let flag = false;
-        for (let item of this.episodes_array) {
-          if (item.id === id) {
-            item.likes = !item.likes;
-            added = true;
-            console.log(this.episodes_array);
-            if(item.likes){
-                flag = true;
+    unfavouriteEpisode(episodeId) {
+        return this.getAllFavouriteEpisodes().then(result => {
+            if (result) {
+                var index = result.indexOf(episodeId);
+                result.splice(index, 1);
+                return this.storage.set(STORAGE_KEY, result);
             }
-            else{
-                flag = false;
-            }
-            break;
-          }
-        }
-    
-        if (!added) {
-            let data = {
-                id: id,
-                likes: true
-            }
-          this.episodes_array.push(data);
-          flag = true;
-        }
-        return flag;
-    }
+    });
 }
+
+
+    getAllFavouriteCharacters() {
+        return this.storage.get(STORAGE_KEY_CHAR);
+        
+    }
+
+    isFavouriteCharacters(charactersId) {
+        return this.getAllFavouriteCharacters().then(result => {
+            return result && result.indexOf(charactersId) !== -1;
+        });
+    }
+
+    favouriteCharacters(charactersId) {
+        return this.getAllFavouriteCharacters().then(result => {
+            if (result) {
+                result.push(charactersId);
+                return this.storage.set(STORAGE_KEY_CHAR, result);
+            } else {
+                return this.storage.set(STORAGE_KEY_CHAR, [charactersId]);
+            }
+        });
+    }
+
+    unfavouriteCharacters(charactersId) {
+        return this.getAllFavouriteCharacters().then(result => {
+            if (result) {
+                var index = result.indexOf(charactersId);
+                result.splice(index, 1);
+                return this.storage.set(STORAGE_KEY_CHAR, result);
+           }
+    });
+  }
+ 
+}
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

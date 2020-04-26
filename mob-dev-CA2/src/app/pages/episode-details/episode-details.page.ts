@@ -12,30 +12,37 @@ import { FavouritesService } from '../../services/favourites.service';
 export class EpisodeDetailsPage implements OnInit {
 
     episode: Observable<any>;
+
+
+    isFavourite = false;
     episodeId = null;
-    icon:any = false;
+
+
     constructor(private activatedRoute: ActivatedRoute,
-        private api: ApiService, private favourites: FavouritesService) { }
+        private api: ApiService, private favouritesService: FavouritesService) { }
 
-    ngOnInit(){
-
-    }
-    ionViewWillEnter() {
+    ngOnInit() {
         this.episodeId = this.activatedRoute.snapshot.paramMap.get('id');
         this.api.getEpisode(this.episodeId).subscribe(res => {
             this.episode = res[0];
             console.log(JSON.stringify(this.episodeId.id));
         });
 
-        this.likeCheck();
-    }
-
-    likeCheck(){
-          this.icon = this.favourites.episodeLike(this.episodeId);
-      }
-    
-      like(episode_id){
-        this.icon = this.favourites.addEpisodeLike(episode_id);
-        // this.get_like();
-      }
+    this.favouritesService.isFavourite(this.episodeId).then(isFav => {
+      this.isFavourite = isFav;
+    });
+  }
+ 
+  favouriteEpisode() {
+    this.favouritesService.favouriteEpisode(this.episodeId).then(() => {
+      this.isFavourite = true;
+    });
+  }
+ 
+  unfavouriteEpisode() {
+    this.favouritesService.unfavouriteEpisode(this.episodeId).then(() => {
+      this.isFavourite = false;
+    });
+  }
+ 
 }

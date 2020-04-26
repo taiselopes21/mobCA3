@@ -14,10 +14,11 @@ import { FavouritesService } from '../../services/favourites.service';
 export class CharacterDetailsPage implements OnInit {
 
     character: Observable<any>;
+    isFavourite = false;
     characterId = null;
-    icon: any = false;
+
     constructor(private activatedRoute: ActivatedRoute,
-        private api: ApiService, private favourites: FavouritesService) { }
+        private api: ApiService, private favouritesService: FavouritesService) { }
 
     ngOnInit() {
         this.characterId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -27,23 +28,25 @@ export class CharacterDetailsPage implements OnInit {
             console.log(this.character);
         });
 
-    }
+    
 
-    ionViewWillEnter() {
-
-
-        this.likeCheck();
-    }
-
-    likeCheck() {
-        this.icon = this.favourites.getCharacterLike(this.characterId);
-    }
-
-    like(character_id) {
-        this.icon = this.favourites.characterLike(character_id);
-        this.likeCheck();
-    }
-
+    this.favouritesService.isFavouriteCharacters(this.characterId).then(isFav => {
+      this.isFavourite = isFav;
+    });
+  }
+ 
+  favouriteCharacter() {
+    this.favouritesService.favouriteCharacters(this.characterId).then(() => {
+      this.isFavourite = true;
+    });
+  }
+ 
+  unfavouriteCharacter() {
+    this.favouritesService.unfavouriteCharacters(this.characterId).then(() => {
+      this.isFavourite = false;
+    });
+  }
+ 
 }
 
 

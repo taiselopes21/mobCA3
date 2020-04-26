@@ -10,55 +10,61 @@
 <ion-content padding>
 
 	<ion-card *ngIf="character">
-    
+
 		<ion-card-content>
-            <ion-card-content class="charTitle">
-			{{ character.name }}
+			<ion-card-content class="charTitle">
+				{{ character.name }}
 
-            <ion-icon *ngIf="icon" (click)="like(character.char_id)" class="heartIcon"  name="heart"></ion-icon>
-			<ion-icon *ngIf="!icon" (click)="like(character.char_id)" class="heartIcon"  name="heart-outline"></ion-icon>
+				<ion-buttons slot="end">
+					<ion-button (click)="unfavouriteCharacter()" *ngIf="isFavourite">
+						<ion-icon name="star" slot="icon-only"></ion-icon>
+					</ion-button>
+					<ion-button (click)="favouriteCharacter()" *ngIf="!isFavourite">
+						<ion-icon name="star-outline" slot="icon-only"></ion-icon>
+					</ion-button>
+				</ion-buttons>
 
-		    </ion-card-content>
-        
-				<img src="{{character.img}}">
+			</ion-card-content>
 
-            
+			<img src="{{character.img}}">
+
+
 			<ion-item>
 				<ion-icon name="person-circle-outline" slot="start"></ion-icon>
 				Name: {{ character.name }}
-            </ion-item>
+			</ion-item>
 
 			<ion-item>
 				<ion-icon name="happy-outline" slot="start"></ion-icon>
 				Nick Name: {{ character.nickname }}
 			</ion-item>
 
-            <ion-item>
+			<ion-item>
 				<ion-icon name="calendar-outline" slot="start"></ion-icon>
 				Birthday: {{ character.birthday }}
 			</ion-item>
 
-            <ion-item>
+			<ion-item>
 				<ion-icon name="camera-outline" slot="start"></ion-icon>
 				Portrayed: {{ character.portrayed }}
 			</ion-item>
 
-            <ion-item>
+			<ion-item>
 				<ion-icon name="videocam-outline" slot="start"></ion-icon>
 				Category: {{ character.category }}
 			</ion-item>
 
-            <ion-item>
+			<ion-item>
 				<ion-icon name="alarm-outline" slot="start"></ion-icon>
 				Status: {{ character.status }}
 			</ion-item>
 
-            <ion-item>
+			<ion-item>
 				<ion-icon name="briefcase-outline" slot="start"></ion-icon>
 				Occupation: {{ character.occupation }}
 			</ion-item>
 
-            <ion-item>
+			<ion-item>
 				<ion-icon name="eye-outline" slot="start"></ion-icon>
 				Appearance: {{ character.appearance }}
 			</ion-item>
@@ -67,4 +73,3 @@
 	</ion-card>
 
 </ion-content>
-
